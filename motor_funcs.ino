@@ -15,16 +15,13 @@ MotorDriver twist_to_rpm(float l_x, float a_z) {
   m.l.rpm = x_rpm - tan_rpm;
   m.r.rpm = x_rpm + tan_rpm;
 
-  // Serial.print(m.l.rpm);
-  // Serial.print(",");
-  // Serial.println(m.r.rpm);
-
   return m;
 }
 
 // assumes 8-bit resolution for pwm
 uint8_t rpm_to_pwm(int rpm) {
-  byte pwm = abs((float(rpm) / MOTOR_MAX_RPM) * 255);
+  // byte pwm = abs((float(rpm) / MOTOR_MAX_RPM) * 255);
+  uint8_t pwm = map(rpm, -MOTOR_MAX_RPM, )
   return pwm;
 }
 
