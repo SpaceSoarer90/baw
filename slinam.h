@@ -6,7 +6,7 @@
 
 #define ARDUINO_PWM_RES 255
 
-#define MOTOR_MAX_RPM 24
+#define MOTOR_MAX_RPM 700
 
 #define MOTOR_A_PWM 9
 #define MOTOR_A_PINA 4

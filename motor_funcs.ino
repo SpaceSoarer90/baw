@@ -21,7 +21,7 @@ MotorDriver twist_to_rpm(float l_x, float a_z) {
 // assumes 8-bit resolution for pwm
 uint8_t rpm_to_pwm(int rpm) {
   // byte pwm = abs((float(rpm) / MOTOR_MAX_RPM) * 255);
-  uint8_t pwm = map(rpm, -MOTOR_MAX_RPM, )
+  uint8_t pwm = map(abs(rpm), 0, MOTOR_MAX_RPM, 0, 255);
   return pwm;
 }
 
@@ -46,12 +46,12 @@ void run_motors(Motor m, uint8_t pinA, uint8_t pinB, uint8_t pinPWM) {
   analogWrite(pinPWM, rpm_to_pwm(m.rpm));
 
   if (m.rpm < 0) {
-    digitalWrite(pinA, HIGH);
-    digitalWrite(pinB, LOW);
-    // ANTI-CLOCKWISE - (positive angles are anti-clockwise)
-  } else if (m.rpm > 0) {
     digitalWrite(pinA, LOW);
     digitalWrite(pinB, HIGH);
+    // ANTI-CLOCKWISE - (positive angles are anti-clockwise)
+  } else if (m.rpm > 0) {
+    digitalWrite(pinA, HIGH);
+    digitalWrite(pinB, LOW);
   } else {
     digitalWrite(pinA, LOW);
     digitalWrite(pinB, LOW);
