@@ -16,7 +16,7 @@ char dbg_out[128];
 cppQueue serial_buffer(sizeof(Twist), 128);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   pinMode(MOTOR_A_PINA, OUTPUT);
   pinMode(MOTOR_A_PINB, OUTPUT);
