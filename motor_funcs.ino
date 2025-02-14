@@ -26,6 +26,18 @@ uint8_t rpm_to_pwm(int rpm) {
 }
 
 void motor_change_state(MotorDriver md) {
+  // enc.l.direction = (md.l.rpm > 0) ? 1 : -1;
+  // enc.r.direction = (md.r.rpm > 0) ? 1 : -1;
+
+  // Serial.println("rpms: ");
+  // Serial.print(md.l.rpm);
+  // Serial.print(" ");
+  // Serial.println(md.r.rpm);
+  // Serial.print("Setting the encoder directions: ");
+  // Serial.print(enc.l.direction);
+  // Serial.print(" ");
+  // Serial.println(enc.r.direction);
+
   run_motors(md.l, MOTOR_A_PINA, MOTOR_A_PINB, MOTOR_A_PWM);
   // reversed the pins here para ok na yung movement niya
   // nakakatamad lol

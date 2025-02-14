@@ -16,8 +16,10 @@
 #define MOTOR_B_PINA 6
 #define MOTOR_B_PINB 7
 
-enum { CC,
-       CCW };
+#define ENC_A_PIN 2
+#define ENC_B_PIN 3
+
+#define TICKS_PER_REV 40
 
 struct Twist {
   union {
@@ -30,25 +32,24 @@ struct Twist {
   } a_z;
 };
 
-struct Encoders {
-  struct {
-    uint16_t pulses;
-    uint16_t cur_pulses;
-    uint16_t last_pulses;
-    int delta_pulses;
-  } l;
+union rpm_but_sucks {
+  float f;
+  uint32_t u;
+};
 
-  struct {
-    uint16_t pulses;
+struct Encoder {
     uint16_t cur_pulses;
-    uint16_t last_pulses;
-    int delta_pulses;
-  } r;
+    float rpm;
+};
+
+struct Encoders {
+  struct Encoder l;
+  struct Encoder r;
 };
 
 struct Motor {
   int rpm;
-  uint8_t dir = CC;
+  // uint8_t dir;
 };
 
 struct MotorDriver {
